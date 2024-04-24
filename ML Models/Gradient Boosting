@@ -122,3 +122,30 @@ plt.ylabel('Count')
 plt.tight_layout()
 plt.show()
 
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Make sure to adjust the column names if they differ in your DataFrame
+future_predictions_pd = future_predictions.select("team_name", "prediction").toPandas()
+
+# Find the top 5 teams by the number of occurrences in the predictions
+top_teams = future_predictions_pd['team_name'].value_counts().nlargest(5).index
+
+# Filter the predictions to only include the top teams
+top_teams_predictions = future_predictions_pd[future_predictions_pd['team_name'].isin(top_teams)]
+
+# Create a cross-tabulation of team names and predicted positions
+team_position_crosstab = pd.crosstab(top_teams_predictions['team_name'], top_teams_predictions['prediction'])
+
+# Plotting
+team_position_crosstab.plot(kind='bar', stacked=True, figsize=(12, 8))
+plt.title('Predicted Positions for Top Dominant Teams')
+plt.xlabel('Team Name')
+plt.ylabel('Count of Predicted Positions')
+plt.legend(title='Predicted Position', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+
+# Show plot
+plt.show()
+
+
