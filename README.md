@@ -1,6 +1,6 @@
 # METCS777TermProject
 
-# Formula 1 Data Analysis Project - CS 77
+# Formula 1 Data Analysis Project - CS 777
 
 ## Overview
 This project analyzes Formula One racing data through a comprehensive pipeline built on Azure Storage and Databricks. The data flow through structured layers: raw ingestion, transformation, analysis, and machine learning.
